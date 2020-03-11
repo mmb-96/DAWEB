@@ -1,0 +1,20 @@
+version: '3'
+services:
+  jenkins:
+   image: jenkinsci/blueocean
+   user: root
+   volumes:
+     - ./jenkins:/var/jenkins_home
+     - /var/run/docker.sock:/var/run/docker.sock
+   ports:
+     - 8080:8080
+   container_name: jenkins
+
+  tomcat:
+    image: tomcat:9.0
+    volumes:
+      - ./Tomcat:/usr/local/tomcat/webapps
+      - ./Tomcat3:/usr/local/tomcat/conf
+    ports:
+      - 80:8080
+    container_name: tomcat
